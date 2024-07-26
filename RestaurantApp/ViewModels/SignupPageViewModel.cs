@@ -20,7 +20,6 @@ namespace RestaurantApp.ViewModels
 
         private void RegisterUserTappedAsync(object obj)
         {
-            throw new NotImplementedException();
         }
     }
 }

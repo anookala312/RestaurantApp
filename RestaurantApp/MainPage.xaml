@@ -23,7 +23,7 @@
                 CornerRadius="50"
                 HasShadow="True"
                 HeightRequest="600">
-            <Grid RowDefinitions ="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+            <Grid RowDefinitions ="Auto,Auto,Auto,Auto,Auto,Auto"
                     Padding="20,50,20,0"
                     HorizontalOptions="FillAndExpand"
                     RowSpacing="20"
