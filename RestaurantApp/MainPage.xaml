@@ -1,32 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RestaurantApp.MainPage">
-
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
+             x:Class="RestaurantApp.MainPage"
+             Shell.NavBarIsVisible="False">
+    <Grid RowDefinitions="Auto,*"
+            BackgroundColor="#1C375C"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+        <StackLayout Grid.Row="0" HorizontalOptions="Center">
             <Image
-                Source="dotnet_bot.png"
-                HeightRequest="185"
-                Aspect="AspectFit"
-                SemanticProperties.Description="dot net bot in a race car number eight" />
+                    Margin="0,30"
+                    Aspect="AspectFit"
+                    HeightRequest="100"
+                    Source="avatar.png"
+                    WidthRequest="80" />
+        </StackLayout>
 
-            <Editor
-                Text="Username"
-                SemanticProperties.Description="Please enter Username" />
+        <Frame
+                Grid.Row="1"
+                Margin="0,0,0,-40"
+                BorderColor="#1C375C"
+                CornerRadius="50"
+                HasShadow="True"
+                HeightRequest="600">
+            <Grid RowDefinitions ="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+                    Padding="20,50,20,0"
+                    HorizontalOptions="FillAndExpand"
+                    RowSpacing="20"
+                    VerticalOptions="FillAndExpand">
+                <Label
+                        Grid.Row="0"
+                        FontAttributes="Bold"
+                        FontSize="24"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Welcome!"
+                        TextColor="#1C375C" />
+                <Label
+                        Grid.Row="1"
+                        Margin="0,-15,0,0"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Login in to account"
+                        TextColor="#1C375C" />
+                <Entry
+                        Grid.Row="2"
+                        Margin="0,20,0,0"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Username"
+                        Text="{Binding UserName}"
+                        VerticalOptions="FillAndExpand" />
+                <Entry
+                        Grid.Row="3"
+                        HorizontalOptions="FillAndExpand"
+                        IsPassword="True"
+                        Placeholder="Password"
+                        Text="{Binding UserPassword}"
+                        VerticalOptions="FillAndExpand" />
+                <Button
+                        Grid.Row="4"
+                        BackgroundColor="#1C375C"
+                        Command="{Binding LoginBtn}"
+                        CornerRadius="20"
+                        Text="Login" />
 
-            <Editor
-                Text="Password"
-                SemanticProperties.Description="Please enter Password" />
-            <Button
-                x:Name="LoginButton"
-                Text="Login" 
-                SemanticProperties.Hint="Click Here to Login"
-                Clicked="OnLoginClicked"
-                HorizontalOptions="Fill" />
-        </VerticalStackLayout>
-    </ScrollView>
+                <Button
+                        Grid.Row="5"
+                        BackgroundColor="#1C375C"
+                        Command="{Binding RegisterBtn}"
+                        CornerRadius="20"
+                        Text="Register using Email" />
+
+            </Grid>
+        </Frame>
+    </Grid>
 
 </ContentPage>

@@ -6,10 +6,9 @@
     xmlns:local="clr-namespace:RestaurantApp"
     Shell.FlyoutBehavior="Disabled"
     Title="RestaurantApp">
-
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:SignupPage}"
+        ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
 </Shell>

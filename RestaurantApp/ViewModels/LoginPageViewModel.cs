@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Toolkit.Mvvm.Input;
-using RestaurantApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,19 +9,26 @@ using System.Threading.Tasks;
 
 namespace RestaurantApp.Models
 {
-    public partial class LoginPageViewModel : BaseViewModel
+    internal class LoginPageViewModel
     {
-        [ObservableProperty]
-        private string _username;
-
-        [ObservableProperty]
-        private string _password;
-        
-        [ICommand]
-        public void Login() 
-        { 
-
+        private INavigation _navigation;
+        public Command RegisterBtn { get; }
+        public Command LoginBtn { get; }
+        public LoginPageViewModel(INavigation navigation) 
+        {
+            this._navigation = navigation;
+            RegisterBtn = new Command(RegisterBtnTappedAsync);
+            LoginBtn = new Command(LoginBtnTappedAsync);
         }
 
+        private async void LoginBtnTappedAsync(object obj)
+        {
+            await this._navigation.PushAsync(new HomePage());
+        }
+
+        private async void RegisterBtnTappedAsync(object obj)
+        {
+            await this._navigation.PushAsync(new SignupPage());
+        }
     }
 }
