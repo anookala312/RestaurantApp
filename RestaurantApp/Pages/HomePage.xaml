@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RestaurantApp.HomePage"
+             x:Class="RestaurantApp.Pages.HomePage"
              Title="HomePage"
              Shell.NavBarIsVisible="False">
     <Grid RowDefinitions="50,220">

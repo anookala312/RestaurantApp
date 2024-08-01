@@ -1,4 +1,4 @@
-namespace RestaurantApp;
+namespace RestaurantApp.Pages;
 
 public partial class ItemPage : ContentPage
 {

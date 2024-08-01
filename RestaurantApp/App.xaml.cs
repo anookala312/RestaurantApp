@@ -1,4 +1,6 @@
-﻿namespace RestaurantApp
+﻿using RestaurantApp.Pages;
+
+namespace RestaurantApp
 {
     public partial class App : Application
     {
@@ -6,7 +8,7 @@
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new AppShell();
         }
     }
 }

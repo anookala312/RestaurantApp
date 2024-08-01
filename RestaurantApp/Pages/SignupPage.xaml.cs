@@ -1,12 +1,12 @@
 using RestaurantApp.ViewModels;
 
-namespace RestaurantApp;
+namespace RestaurantApp.Pages;
 
 public partial class SignupPage : ContentPage
 {
-	public SignupPage()
+	public SignupPage(SignupPageViewModel viewModel)
 	{
 		InitializeComponent();
-		BindingContext = new SignupPageViewModel(Navigation);
+		BindingContext = viewModel;
 	}
 } 

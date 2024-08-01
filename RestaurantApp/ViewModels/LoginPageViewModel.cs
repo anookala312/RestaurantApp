@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Firebase.Auth;
 using Microsoft.Toolkit.Mvvm.Input;
+using RestaurantApp.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,26 +11,41 @@ using System.Threading.Tasks;
 
 namespace RestaurantApp.Models
 {
-    internal class LoginPageViewModel
+    public partial class LoginPageViewModel : ObservableObject
     {
-        private INavigation _navigation;
-        public Command RegisterBtn { get; }
-        public Command LoginBtn { get; }
-        public LoginPageViewModel(INavigation navigation) 
+        private readonly FirebaseAuthClient _authClient;
+
+        [ObservableProperty]
+        private string? _email;
+
+        [ObservableProperty]
+        private string? _password;
+        public LoginPageViewModel(FirebaseAuthClient authClient)
         {
-            this._navigation = navigation;
-            RegisterBtn = new Command(RegisterBtnTappedAsync);
-            LoginBtn = new Command(LoginBtnTappedAsync);
+            _authClient = authClient;
         }
 
-        private async void LoginBtnTappedAsync(object obj)
+        [RelayCommand]
+        private async Task Login() 
         {
-            await this._navigation.PushAsync(new HomePage());
+            try
+            {
+                await _authClient.SignInWithEmailAndPasswordAsync(Email, Password);
+                await Shell.Current.GoToAsync("//Home");
+            }
+            catch (Exception ex) 
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Invalid email or password.", "OK");
+            }
+
         }
 
-        private async void RegisterBtnTappedAsync(object obj)
+        [RelayCommand]
+        private async Task NavigateSignUp() 
         {
-            await this._navigation.PushAsync(new SignupPage());
+            await Shell.Current.GoToAsync("//Register");
         }
+
+
     }
 }
