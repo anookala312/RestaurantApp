@@ -1,6 +1,12 @@
 ﻿using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Markup;
 using Microsoft.Extensions.Logging;
+using Firebase.Auth.Providers;
+using Firebase.Auth;
+using RestaurantApp.Pages;
+using RestaurantApp.ViewModels;
+using RestaurantApp.Models;
+
 
 namespace RestaurantApp
 {
@@ -22,6 +28,20 @@ namespace RestaurantApp
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            builder.Services.AddSingleton(new FirebaseAuthClient(new FirebaseAuthConfig() 
+            {
+                AuthDomain = "laura-cafe-e050d.firebaseapp.com",
+                ApiKey = "AIzaSyCago6E_opuoxqR1apPjZhFvoAhITpGzks",
+                Providers = new FirebaseAuthProvider[] 
+                { 
+                    new EmailProvider()
+                }
+            }));
+
+            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<SignupPage>();
+            builder.Services.AddSingleton<SignupPageViewModel>();
+            builder.Services.AddSingleton<LoginPageViewModel>();
 
             return builder.Build();
         }

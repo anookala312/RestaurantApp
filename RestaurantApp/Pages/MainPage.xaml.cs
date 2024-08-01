@@ -1,12 +1,14 @@
 ﻿using RestaurantApp.Models;
 
-namespace RestaurantApp;
+namespace RestaurantApp.Pages;
 
 public partial class MainPage : ContentPage
 {
-    public MainPage()
+    public MainPage(LoginPageViewModel viewModel)
     {
         InitializeComponent();
-        BindingContext = new LoginPageViewModel(Navigation);
+        BindingContext = viewModel;
     }
+
+
 }
