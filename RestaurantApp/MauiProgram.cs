@@ -42,6 +42,9 @@ namespace RestaurantApp
             builder.Services.AddSingleton<SignupPage>();
             builder.Services.AddSingleton<SignupPageViewModel>();
             builder.Services.AddSingleton<LoginPageViewModel>();
+            builder.Services.AddSingleton<HomePage>();
+            builder.Services.AddSingleton<HomePageViewModel>();
+
 
             return builder.Build();
         }

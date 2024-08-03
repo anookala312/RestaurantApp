@@ -24,6 +24,7 @@ namespace RestaurantApp.Models
         {
             _authClient = authClient;
         }
+        public string? Username => _authClient.User?.Info?.DisplayName;
 
         [RelayCommand]
         private async Task Login() 
@@ -31,6 +32,8 @@ namespace RestaurantApp.Models
             try
             {
                 await _authClient.SignInWithEmailAndPasswordAsync(Email, Password);
+
+                OnPropertyChanged(nameof(Username));
                 await Shell.Current.GoToAsync("//Home");
             }
             catch (Exception ex) 

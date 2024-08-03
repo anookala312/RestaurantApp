@@ -5,13 +5,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:RestaurantApp.Pages"
     Shell.FlyoutBehavior="Disabled"
-    Title="RestaurantApp">
+    Title="RestaurantApp"
+    Shell.BackgroundColor="Aquamarine">
     <ShellContent
-        Title="Home"
+        Title="Login"
         ContentTemplate="{DataTemplate pages:MainPage}"
         Route="Login" />
     <ShellContent
-        Title="Home"
+        Title="Signup"
         ContentTemplate="{DataTemplate pages:SignupPage}"
         Route="Register" />
     <ShellContent
