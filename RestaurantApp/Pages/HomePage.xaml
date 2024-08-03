@@ -2,29 +2,29 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RestaurantApp.Pages.HomePage"
-             Title="HomePage"
-             Shell.NavBarIsVisible="False">
-    <Grid RowDefinitions="50,220">
-        <StackLayout Orientation="Horizontal">
-            <Image Source="avatar.png" Aspect="AspectFill"></Image>
-            <Label Text="Laura's Cafe" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="Title" FontAttributes="Bold" WidthRequest="200" Padding="60,0,0,0"/>
-        </StackLayout>
-        <Grid Grid.Row="1" RowDefinitions="200,200,200" ColumnDefinitions="200,200,200" RowSpacing="5" ColumnSpacing="5">
-            <BoxView Grid.Row="0" >
-            </BoxView>
-            <BoxView Grid.Row="1" >
-            </BoxView>
-            <BoxView Grid.Row="2" >
-            </BoxView>
-            <BoxView Grid.Row="0" Grid.Column="1" >
-            </BoxView>
-            <BoxView Grid.Row="1" Grid.Column="1">
-            </BoxView>
-            <BoxView Grid.Row="2" Grid.Column="1">
-            </BoxView>
-        </Grid>
-        
-        
-    </Grid>
+             Title="Welcome to Laura's Cafe" 
+             Padding="15">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label Text= "{Binding Username}" TextColor="Black"/>
+            <Border StrokeShape="RoundRectangle 10"
+                    StrokeThickness="0"
+                    BackgroundColor="Beige"
+                    VerticalOptions="Start"
+                    Padding="15">
+                <Grid ColumnDefinitions="*, 150" RowDefinitions="*, Auto">
+                    <VerticalStackLayout Grid.Row="0" Grid.Column="0" Spacing="10">
+                        <Label Text="On Sale" FontSize="25" FontAttributes="Bold" VerticalOptions="Center"/>
+                        <Label Text="Buy it now before the sale Ends"/>
+                    </VerticalStackLayout>
+                    <Button Grid.Row="1" Grid.Column="0" Text="Buy Now" BackgroundColor="Aqua" TextColor="Black" FontAttributes="Bold" CornerRadius="22" HorizontalOptions="Center" Padding="50,0"/>
+                    <Image Source="butterchicken" Grid.RowSpan="2" Grid.Column="1" HeightRequest="150" WidthRequest="150" />
+
+                </Grid>
+            </Border>
+                    
+        </VerticalStackLayout>
+    </ScrollView>
+    
 
 </ContentPage>
