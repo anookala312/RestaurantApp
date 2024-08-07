@@ -19,5 +19,10 @@
         Title="Home"
         ContentTemplate="{DataTemplate pages:HomePage}"
         Route="Home" />
+    <ShellContent
+        Title="MenuItems"
+        ContentTemplate="{DataTemplate pages:AllMenuItemsPage}"
+        Route="AllMenuItems" />
+
 
 </Shell>

@@ -46,9 +46,9 @@ namespace RestaurantApp.Services
         
         public IEnumerable<MenuItems> GetAllMenuItems() => _items;
 
-        public IEnumerable<MenuItems> GetOnSaleMenuItems(int count = 4) => _items.OrderBy(p => Guid.NewGuid()).Take(count);
+        public IEnumerable<MenuItems> GetPopularMenuItems(int count = 4) => _items.OrderBy(p => Guid.NewGuid()).Take(count);
 
-        public IEnumerable<MenuItems> GetMenuItems(string searchTerm) => string.IsNullOrWhiteSpace(searchTerm)? _items
+        public IEnumerable<MenuItems> SearchMenuItems(string searchTerm) => string.IsNullOrWhiteSpace(searchTerm)? _items
             : _items.Where(p => p.Name.Contains(searchTerm,StringComparison.OrdinalIgnoreCase));
     }
 }

@@ -13,10 +13,10 @@ namespace RestaurantApp.Models
         public string? Image {  get; set; }
         public double? Price { get; set; }
 
-        [ObservableProperty, NotifyPropertyChangedFor(nameof(Amount))]
-        private int _cartQuantity;
+        //[ObservableProperty, NotifyPropertyChangedFor(nameof(Amount))]
+        //private int _cartQuantity;
 
-        public double Amount => CartQuantity * Price;
+        //public double Amount => cartQuantity * Price;
 
         public MenuItems Clone() => MemberwiseClone() as MenuItems;
     }
