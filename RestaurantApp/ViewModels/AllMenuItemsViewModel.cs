@@ -34,6 +34,7 @@ namespace RestaurantApp.ViewModels
         {
             MenuItems.Clear();
             Searching = true;
+            await Task.Delay(1000);
             foreach (var menuItem in _menuItemService.SearchMenuItems(searchTerm)) 
             {
                 MenuItems.Add(menuItem);
