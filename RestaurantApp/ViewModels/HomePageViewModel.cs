@@ -1,16 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using RestaurantApp.Models;
-using RestaurantApp.Pages;
-using RestaurantApp.Services;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RestaurantApp.ViewModels
+﻿namespace RestaurantApp.ViewModels
 {
     public partial class HomePageViewModel : ObservableObject
     {
@@ -31,6 +19,16 @@ namespace RestaurantApp.ViewModels
                 [nameof(AllMenuItemsViewModel.FromSearch)] = fromSearch
             };
             await Shell.Current.GoToAsync(nameof(AllMenuItemsPage), animate: true, parameters);
+        }
+        
+        [RelayCommand]
+        private async Task GoToItemPage(MenuItems menuItems)
+        {
+            var parameters = new Dictionary<string, object>
+            {
+                [nameof(ItemPageViewModel.MenuItems)] = menuItems
+            };
+            await Shell.Current.GoToAsync(nameof(ItemPage), animate: true, parameters);
         }
     }
 }

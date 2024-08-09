@@ -1,15 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using RestaurantApp.Models;
-using RestaurantApp.Services;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RestaurantApp.ViewModels
+﻿namespace RestaurantApp.ViewModels
 {
     [QueryProperty(nameof(FromSearch), nameof(FromSearch))]
     public partial class AllMenuItemsViewModel : ObservableObject
@@ -40,6 +29,16 @@ namespace RestaurantApp.ViewModels
                 MenuItems.Add(menuItem);
             }
             Searching = false;
+        }
+
+        [RelayCommand]
+        private async Task GoToItemPage(MenuItems menuItems)
+        {
+            var parameters = new Dictionary<string, object>
+            {
+                [nameof(ItemPageViewModel.MenuItems)] = menuItems
+            };
+            await Shell.Current.GoToAsync(nameof(ItemPage), animate: true, parameters);
         }
     }
 }

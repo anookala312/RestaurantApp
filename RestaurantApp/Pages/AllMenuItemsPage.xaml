@@ -72,12 +72,22 @@
                                                 <Label Text="View more"
                                                        VerticalOptions="Center"/>
                                                 <Image Source="right_arrow.png"
-                                                       HeightRequest="30"
+                                                       HeightRequest="20"
                                                        VerticalOptions="Center"/>
                                             </HorizontalStackLayout>
+                                            <Border.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source=
+                                                    {x:RelativeSource AncestorType={x:Type vm:AllMenuItemsViewModel}},
+                                                    Path=GoToItemPageCommand}" CommandParameter="{Binding .}"/>
+                                            </Border.GestureRecognizers>
                                         </Border>
                                     </VerticalStackLayout>
                                 </Grid>
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source=
+                                                    {x:RelativeSource AncestorType={x:Type vm:AllMenuItemsViewModel}},
+                                                    Path=GoToItemPageCommand}" CommandParameter="{Binding .}"/>
+                                </Border.GestureRecognizers>
                             </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

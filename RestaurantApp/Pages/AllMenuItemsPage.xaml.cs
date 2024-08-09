@@ -1,5 +1,3 @@
-using RestaurantApp.ViewModels;
-
 namespace RestaurantApp.Pages;
 
 public partial class AllMenuItemsPage : ContentPage
