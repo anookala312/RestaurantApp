@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:RestaurantApp.ViewModels"
+             xmlns:models="clr-namespace:RestaurantApp.Models"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="RestaurantApp.Pages.CheckoutPage"
-             Title="CheckoutPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Title="Checkout">
+    <VerticalStackLayout VerticalOptions="Center"
+                         HorizontalOptions="Center"
+                         Spacing="25">
+        <Image Source="check"
+               HeightRequest="150"
+               WidthRequest="150">
+            <Image.Behaviors>
+                <toolkit:IconTintColorBehavior TintColor="Green"/>
+            </Image.Behaviors>
+        </Image>
+        <Label Text="Order Placed Successfully"
+               FontSize="30"
+               TextColor="Green"/>
+        <Button Text="Go to Home Screen"
+                BackgroundColor="DarkGoldenrod"
+                CornerRadius="22"
+                HorizontalOptions="Center"
+                Padding="50, 10"
+                Command="{Binding BacktoHomeCommand}"/>
+
     </VerticalStackLayout>
 </ContentPage>

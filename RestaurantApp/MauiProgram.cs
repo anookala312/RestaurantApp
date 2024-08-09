@@ -48,6 +48,10 @@ namespace RestaurantApp
             builder.Services.AddSingleton<MenuItemService>();
             builder.Services.AddTransientWithShellRoute<AllMenuItemsPage,AllMenuItemsViewModel>(nameof(AllMenuItemsPage));
             builder.Services.AddTransientWithShellRoute<ItemPage, ItemPageViewModel>(nameof(ItemPage));
+            builder.Services.AddSingleton<CartViewModel>();
+            builder.Services.AddTransient<CartPage>();
+            builder.Services.AddSingleton<CheckoutViewModel>();
+            builder.Services.AddTransient<CheckoutPage>();
 
             return builder.Build();
         }
