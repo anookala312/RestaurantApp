@@ -6,6 +6,7 @@ using Firebase.Auth;
 using RestaurantApp.Pages;
 using RestaurantApp.ViewModels;
 using RestaurantApp.Models;
+using RestaurantApp.Services;
 
 
 namespace RestaurantApp
@@ -44,7 +45,13 @@ namespace RestaurantApp
             builder.Services.AddSingleton<LoginPageViewModel>();
             builder.Services.AddSingleton<HomePage>();
             builder.Services.AddSingleton<HomePageViewModel>();
-
+            builder.Services.AddSingleton<MenuItemService>();
+            builder.Services.AddTransientWithShellRoute<AllMenuItemsPage,AllMenuItemsViewModel>(nameof(AllMenuItemsPage));
+            builder.Services.AddTransientWithShellRoute<ItemPage, ItemPageViewModel>(nameof(ItemPage));
+            builder.Services.AddSingleton<CartViewModel>();
+            builder.Services.AddTransient<CartPage>();
+            builder.Services.AddSingleton<CheckoutViewModel>();
+            builder.Services.AddTransient<CheckoutPage>();
 
             return builder.Build();
         }

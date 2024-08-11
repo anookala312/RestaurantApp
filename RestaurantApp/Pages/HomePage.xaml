@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:RestaurantApp.ViewModels"
+             xmlns:models="clr-namespace:RestaurantApp.Models"
              x:Class="RestaurantApp.Pages.HomePage"
              Title="Welcome to Laura's Cafe" 
-             Padding="15">
+             Padding="15"
+             x:DataType="vm:HomePageViewModel">
     <ScrollView>
         <VerticalStackLayout>
-            <Label Text= "{Binding Username}" TextColor="Black"/>
             <Border StrokeShape="RoundRectangle 10"
                     StrokeThickness="0"
                     BackgroundColor="Beige"
@@ -22,6 +24,88 @@
 
                 </Grid>
             </Border>
+            <Border StrokeShape="RoundRectangle 22"
+                    StrokeThickness="2"
+                    Stroke="Goldenrod">
+                <Label Text="Search here.."
+                       TextColor="Goldenrod"
+                       Padding="10, 14"/>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoToAllMenuItemsPageCommand}"
+                                          CommandParameter="{x:Boolean true}"/>
+                </Border.GestureRecognizers>
+            </Border>
+            <BoxView HeightRequest="15"
+                     Color="White"/>
+            <Grid ColumnDefinitions="*,*">
+                <Label Grid.Column="0"
+                       Text="Popular items"
+                       VerticalOptions="End"
+                       FontSize="20"
+                       FontAttributes="Bold"/>
+                <Label Grid.Column="1"
+                       Text="View all"
+                       HorizontalOptions="End"
+                       VerticalOptions="End"
+                       TextDecorations="Underline">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToAllMenuItemsPageCommand}"
+                                              CommandParameter="{x:Boolean false}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+            <FlexLayout BindableLayout.ItemsSource="{Binding Items}" Wrap="Wrap">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="models:MenuItems">
+                        <Border FlexLayout.Basis="50%"
+                                StrokeShape="RoundRectangle 10"
+                                StrokeThickness="0"
+                                BackgroundColor="PaleGoldenrod"
+                                Padding="10"
+                                Margin="2">
+                            <Grid RowDefinitions="150, Auto, Auto, Auto" RowSpacing="5">
+                                <Image Grid.Row="0" Source="{Binding Image}" HeightRequest="150" WidthRequest="130"/>
+                                <Label Grid.Row="1"
+                                       Text="{Binding Name}"
+                                       HorizontalOptions="Center"
+                                       FontSize="15"/>
+                                <Grid Grid.Row="2" ColumnDefinitions="*, *">
+                                    <Label Grid.Column="0"
+                                           Text="{Binding Price, StringFormat='${0:N2}'}"
+                                           VerticalOptions="Center"
+                                           FontAttributes="Bold"/>
+                                    <HorizontalStackLayout Grid.Column="1"
+                                                           HorizontalOptions="End"
+                                                           Spacing="2"
+                                                           VerticalOptions="Center">
+                                        <Image Source="cooktime.png" 
+                                               HeightRequest="15"
+                                               WidthRequest="15"></Image>
+                                        <Label Text="25 Min"/>
+                                    </HorizontalStackLayout>
+                                </Grid>
+                                <Button Grid.Row="3"
+                                        Text="View more"
+                                        Background="Gold"
+                                        TextColor="Black"
+                                        CornerRadius="22"
+                                        FontAttributes="Bold"
+                                        VerticalOptions="End"
+                                        HorizontalOptions="Center"
+                                        Padding="25, 0"
+                                        Command="{Binding Source=
+                                                    {x:RelativeSource AncestorType={x:Type vm:HomePageViewModel}},
+                                                    Path=GoToItemPageCommand}" CommandParameter="{Binding .}"/>
+                            </Grid>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source=
+                                                    {x:RelativeSource AncestorType={x:Type vm:HomePageViewModel}},
+                                                    Path=GoToItemPageCommand}" CommandParameter="{Binding .}"/>
+                            </Border.GestureRecognizers>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
                     
         </VerticalStackLayout>
     </ScrollView>

@@ -56,6 +56,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Pages\UserProfilePage.xaml.cs" />
+	  <Compile Remove="ViewModels\CheckoutPageViewModel.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Remove="Pages\UserProfilePage.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\Images\avatar.png" />
 	</ItemGroup>
 
@@ -72,6 +81,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\AllMenuItemsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\CartPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\CheckoutPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -86,9 +101,6 @@
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SignupPage.xaml">
 	    <Generator></Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Pages\UserProfilePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
 
