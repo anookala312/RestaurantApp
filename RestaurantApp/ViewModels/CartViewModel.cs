@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
 
 namespace RestaurantApp.ViewModels
 {
@@ -72,13 +74,39 @@ namespace RestaurantApp.ViewModels
             }
         }
 
+        private readonly string accountSid = Environment.GetEnvironmentVariable("TWILIO_ACCOUNT_SID");
+        private readonly string authToken = Environment.GetEnvironmentVariable("TWILIO_AUTH_TOKEN");
+
         [RelayCommand]
         private async Task PlaceOrder()
         {
+            var messageBody = new StringBuilder("New order placed!\nItems:\n");
+            foreach (var item in Items)
+            {
+                messageBody.AppendLine($"- {item.Name} x {item.CartQuantity}");
+            }
+            messageBody.AppendLine($"Total: {TotalAmount:C}");
+            try
+            {
+                TwilioClient.Init(accountSid, authToken);
+
+                var message = await MessageResource.CreateAsync(
+                    body: messageBody.ToString(),
+                    from: new Twilio.Types.PhoneNumber("+19785068476"),
+                    to: new Twilio.Types.PhoneNumber("+17056981447")
+                );
+
+                Console.WriteLine($"Message SID: {message.Sid}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error sending Twilio message: {ex.Message}");
+            }
             Items.Clear();
             RecalculateTotalAmount();
             CartCleared?.Invoke(this, EventArgs.Empty);
             await Shell.Current.GoToAsync(nameof(CheckoutPage), animate: true);
+
         }
     }
 }
